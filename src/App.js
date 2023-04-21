@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import SnippetList from './components/SnippetList';
+import SnippetForm from './components/SnippetForm';
+import SnippetEdit from './components/SnippetEdit';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/new">New Snippet</Link></li>
+        </ul>
+      </nav>
+      <Switch>
+        <Route exact path="/">
+          <SnippetList />
+        </Route>
+        <Route exact path="/new">
+          <SnippetForm />
+        </Route>
+        <Route exact path="/edit/:id">
+          <SnippetEdit />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
